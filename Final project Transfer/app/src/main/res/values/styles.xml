@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="cardview">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dip</item>
+        <item name="android:layout_margin">5dip</item>
+    </style>
+
+    <style name="cardimage">
+        <item name="android:layout_height">60dip</item>
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_marginLeft">20dip</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="cardButton">
+        <item name="android:ems">8</item>
+        <item name="android:textColor">#ff0b1cff</item>
+
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginLeft">40dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
+
+
+    <style name="textview">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">15dip</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_margin">20dip</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="edittext">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_margin">20dip</item>
+
+
+    </style>
+
+</resources>
