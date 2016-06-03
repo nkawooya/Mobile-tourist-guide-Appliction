@@ -52,6 +52,8 @@
 
     <!-- help & support -->
     <string name="support">HELP &amp; SUPPORT</string>
+    <string name="copyright">© Dexta 2016</string>
+
     <!-- About us -->
     <string name="abt">ABOUT US</string>
     <string name="email_us">email us</string>
@@ -61,7 +63,18 @@
     <string name="action_Change_view">change view</string>
     <string name="action_change_color">change color</string>
     <string name="title_activity_ilocation">Map</string>
-<!-- maps activity-->
+    <!-- maps activity -->
     <string name="title_activity_maps">Map</string>
+
+    <!-- navigation drawer strings -->
+
+    <string name="opendrawer">open</string>
+    <string name="closedrawer">close</string>
+    <string name="title_activity_imobile_tourist_guide">IMobileTouristGuide</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_itourist_display">ITouristDisplay</string>
+    <string name="title_activity_exp_dashboard">Exp_dashboard</string>
+    <string name="title_activity_tracker">Tracker</string>
+    <string name="title_activity_object__tracking">Object_Tracking</string>
 
 </resources>

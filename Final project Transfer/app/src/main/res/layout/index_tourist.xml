@@ -23,13 +23,13 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/exp1"
+                        android:src="@drawable/wildlifec"
                         android:id="@+id/location"
                         />
                     <Button
                         style="@style/cardButton"
                         android:text="@string/wildlife"
-                        android:id="@+id/btzoo"
+                        android:id="@+id/btwcenter"
 
                         />
                 </android.support.v7.widget.CardView>
@@ -40,13 +40,13 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/index1"
+                        android:src="@drawable/bujagali"
                         android:id="@+id/destination"
                         />
                     <Button
                         style="@style/cardButton"
                         android:text="@string/water"
-                        android:id="@+id/bttoursites"
+                        android:id="@+id/btwbodies"
 
                         />
 
@@ -58,7 +58,7 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/res"
+                        android:src="@drawable/market3"
                         android:id="@+id/reservation"
                         />
                     <Button
@@ -75,8 +75,8 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/exp2"
-                        android:id="@+id/experience"
+                        android:src="@drawable/mus3"
+                        android:id="@+id/ivmuseum"
                         />
                     <Button
                         style="@style/cardButton"
@@ -92,7 +92,7 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/hel5"
+                        android:src="@drawable/recreation3"
                         android:id="@+id/recreation"
                         />
                     <Button
@@ -109,7 +109,7 @@
                     <com.nkawooya.finalprojecttransfer.RoundedImageView
 
                         style="@style/cardimage"
-                        android:src="@drawable/about"
+                        android:src="@drawable/others"
                         android:id="@+id/about"
                         />
                     <Button

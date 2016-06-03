@@ -7,4 +7,7 @@
     <item android:id ="@+id/action_refresh"
         android:title="Refresh" app:showAsAction="always"
        android:icon="@drawable/ic_action_refresh"/>
+    <item android:id ="@+id/action_mode_close_button"
+        android:title="Close" app:showAsAction="never"
+        />
 </menu>

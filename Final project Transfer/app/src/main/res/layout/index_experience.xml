@@ -140,6 +140,18 @@
                         android:orientation="vertical"
                         android:layout_marginTop="50dip">
 
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+
+                            <EditText style="@style/edittext"
+                                android:hint="@string/username"
+                                android:id="@+id/Ausername"
+                                android:inputType="text"/>
+                        </android.support.design.widget.TextInputLayout>
+
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
@@ -181,7 +193,7 @@
                         android:ems="10"
                         android:gravity="center"
                         android:layout_gravity="center"
-                        android:id="@+id/Alogin"
+                        android:id="@+id/btlogin"
                         />
 
                     </LinearLayout>
@@ -199,7 +211,7 @@
                             android:background="@android:color/transparent"
                             android:text="@string/create"
                             android:textAllCaps="false"
-                            android:id="@+id/NewAC"
+                            android:id="@+id/btcreate"
 
                             android:textSize="16dip"/>
 

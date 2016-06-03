@@ -1,21 +1,39 @@
 package com.nkawooya.finalprojecttransfer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.*;
+
+import com.nkawooya.finalprojecttransfer.Login.Register;
 
 /**
  * Created by nkawooya on 4/25/2016.
  */
-public class IExperience extends AppCompatActivity {
+public class IExperience extends AppCompatActivity implements View.OnClickListener {
+    Button create,login,btlogin,btcreate,reset;
+    EditText etemail,etpassword,atemail,atpassword;
+    TabHost th;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_experience);
-        TabHost th = (TabHost)findViewById(R.id.tabHost);
+        Initialize();
+
+
+
+        //setting onclick listeners
+        create.setOnClickListener(this);
+        login.setOnClickListener(this);
+        btcreate.setOnClickListener(this);
+        btlogin.setOnClickListener(this);
+
+
+       //setting up the tab host
         th.setup();
 
        TabHost.TabSpec         specs = th.newTabSpec("client");
@@ -33,6 +51,23 @@ public class IExperience extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeButtonEnabled(true);
     }
+
+
+    //method to initialize the widgets
+    private void Initialize() {
+        create = (Button)findViewById(R.id.Lcreate);
+        login = (Button)findViewById(R.id.login);
+        th = (TabHost)findViewById(R.id.tabHost);
+        etemail = (EditText)findViewById(R.id.Lemail);
+        etpassword = (EditText)findViewById(R.id.Lpassword);
+        atemail = (EditText)findViewById(R.id.Aemail);
+        atpassword =(EditText)findViewById(R.id.Apassword);
+        btlogin = (Button) findViewById(R.id.btlogin);
+        btcreate = (Button)findViewById(R.id.btcreate);
+        //,reset
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -59,5 +94,27 @@ public class IExperience extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent a;
+        switch (view.getId()){
+            case R.id.login:
+                break;
+            case R.id.btlogin:
+                break;
+            case R.id.Lcreate:
+               a = new Intent(IExperience.this, Register.class);
+                startActivity(a);
+
+                break;
+            case R.id.btcreate:
+                break;
+
+
+        }
+
+
     }
 }

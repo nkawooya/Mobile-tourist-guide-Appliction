@@ -1,5 +1,6 @@
 package com.nkawooya.finalprojecttransfer.Login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +9,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.Toast;
 
+import com.nkawooya.finalprojecttransfer.IExperience;
 import com.nkawooya.finalprojecttransfer.R;
+import com.nkawooya.finalprojecttransfer.ServerRequests.GetUserCallbacks;
+import com.nkawooya.finalprojecttransfer.ServerRequests.ServerRequests;
+import com.nkawooya.finalprojecttransfer.ServerRequests.User;
 
 /**
  * Created by nkawooya on 4/25/2016.
  */
-public class Register extends AppCompatActivity {
+public class Register extends AppCompatActivity implements View.OnClickListener {
 
     Button cont;
     EditText etname,etusername,etemail,etcountry,etpassword,etconfirm;
@@ -31,7 +38,7 @@ public class Register extends AppCompatActivity {
          }
      });
 
-
+cont.setOnClickListener(this);
 
 
 
@@ -40,37 +47,12 @@ public class Register extends AppCompatActivity {
 
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setHomeButtonEnabled(true);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_reservation, menu);
-        return true;
-
-
-
+        ab.hide();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }else if (id == android.R.id.home){
-            super.onBackPressed();
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
-
+    //method fo calling widgets
     public void Initialize(){
         cont = (Button)findViewById(R.id.cont);
         etname= (EditText)findViewById(R.id.Rname);
@@ -80,5 +62,52 @@ public class Register extends AppCompatActivity {
         etpassword=(EditText)findViewById(R.id.Rpassword);
         etconfirm=(EditText)findViewById(R.id.Rcpassword);
 
+
+
+    }
+    public void getdata(){
+        String sname = etname.getText().toString();
+        String susername = etusername.getText().toString();
+        String semail = etemail.getText().toString();
+        String scountry = etcountry.getText().toString();
+        String spassword = etpassword.getText().toString();
+        String sconfirm = etconfirm.getText().toString();
+        User user;
+        if (sname.equals("")||susername.equals("")||semail.equals("")||scountry.equals("")||spassword.equals("")){
+            Toast.makeText(getBaseContext(),"missing fields",Toast.LENGTH_SHORT).show();
+            etpassword.setText("");
+            etconfirm.setText("");
+          }else {
+            if(spassword.equals(sconfirm)){
+                user = new User(sname,susername,semail,scountry,sconfirm);
+                ServerRequests serverRequests = new ServerRequests(this);
+                serverRequests.storedatainBackground(user,new GetUserCallbacks() {
+                    @Override
+                    public void done(User returnedUdser) {
+                        Intent a = new Intent(Register.this, IExperience.class);
+                        startActivity(a);
+                    }
+                });
+            }else {
+                Toast.makeText(getBaseContext(),"passwords do not match",Toast.LENGTH_SHORT).show();
+                etpassword.setText("");
+                etconfirm.setText("");
+            }
+
+
+        }
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+       int id = view.getId();
+                if(id == R.id.cont){
+                 getdata();
+
+
+
+        }
     }
 }
