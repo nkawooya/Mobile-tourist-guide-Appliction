@@ -1,19 +1,28 @@
 package com.nkawooya.finalprojecttransfer;
 
 import android.app.ActionBar;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class ILocation extends AppCompatActivity {
-
+public class ILocation extends AppCompatActivity implements AdapterView.OnItemClickListener {
+        private Spinner locate;
+        String paths[] ={"tourist sites","my location","Health Facilities","Accomodation"};
+        String parth;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
@@ -26,7 +35,10 @@ public class ILocation extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeButtonEnabled(true);
         ab.setDefaultDisplayHomeAsUpEnabled(true);
-
+        locate = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, paths);
+        locate.setAdapter(adapter);
+        locate.setOnItemClickListener(this);
     }
 
     @Override
@@ -99,4 +111,26 @@ public class ILocation extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        int position = locate.getSelectedItemPosition();
+        switch (position){
+            case 0:
+                parth = new String("");
+                Toast.makeText(getBaseContext(),"tourist sites",Toast.LENGTH_SHORT).show();
+            case 1:
+                Toast.makeText(getBaseContext(),"my location",Toast.LENGTH_SHORT).show();
+
+                break;
+            case 2:
+                Toast.makeText(getBaseContext(),"Health Facilities",Toast.LENGTH_SHORT).show();
+
+                break;
+            case 3:
+                Toast.makeText(getBaseContext(),"Accomodation",Toast.LENGTH_SHORT).show();
+
+                break;
+            default:break;
+        }
+    }
 }

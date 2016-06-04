@@ -1,36 +1,44 @@
 package com.nkawooya.finalprojecttransfer;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
+import com.nkawooya.finalprojecttransfer.Login.Experience_dashboard;
 import com.nkawooya.finalprojecttransfer.Login.Register;
+import com.nkawooya.finalprojecttransfer.ServerRequests.GetUserCallbacks;
+import com.nkawooya.finalprojecttransfer.ServerRequests.LocalDatabase;
+import com.nkawooya.finalprojecttransfer.ServerRequests.ServerRequests;
+import com.nkawooya.finalprojecttransfer.ServerRequests.User;
 
 /**
  * Created by nkawooya on 4/25/2016.
  */
-public class IExperience extends AppCompatActivity implements View.OnClickListener {
-    Button create,login,btlogin,btcreate,reset;
-    EditText etemail,etpassword,atemail,atpassword;
-    TabHost th;
+public class IExperience extends AppCompatActivity {
+     Button btlogin,reset;
+    LocalDatabase localDatabase;
+     EditText etemail,etpassword,atemail,atpassword;
+    Button btcreate;
+   TabHost th;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_experience);
-        Initialize();
 
 
+        th = (TabHost)findViewById(R.id.tabHost);
+        etemail = (EditText)findViewById(R.id.Lemail);
+        etpassword = (EditText)findViewById(R.id.Lpassword);
+        atemail = (EditText)findViewById(R.id.Aemail);
+        atpassword =(EditText)findViewById(R.id.Apassword);
 
-        //setting onclick listeners
-        create.setOnClickListener(this);
-        login.setOnClickListener(this);
-        btcreate.setOnClickListener(this);
-        btlogin.setOnClickListener(this);
+localDatabase = new LocalDatabase(this);
+
 
 
        //setting up the tab host
@@ -51,22 +59,63 @@ public class IExperience extends AppCompatActivity implements View.OnClickListen
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeButtonEnabled(true);
     }
+public void onSigninClick(View view){
+    Intent a = new Intent(IExperience.this,Register.class);
+    startActivity(a);
+
+}
+  public void onLoginClick(View view)
+  {
+      String email = etemail.getText().toString();
+      String password = etpassword.getText().toString();
+
+      User user = new User(email,password);
+      authenticate(user);
 
 
-    //method to initialize the widgets
-    private void Initialize() {
-        create = (Button)findViewById(R.id.Lcreate);
-        login = (Button)findViewById(R.id.login);
-        th = (TabHost)findViewById(R.id.tabHost);
-        etemail = (EditText)findViewById(R.id.Lemail);
-        etpassword = (EditText)findViewById(R.id.Lpassword);
-        atemail = (EditText)findViewById(R.id.Aemail);
-        atpassword =(EditText)findViewById(R.id.Apassword);
-        btlogin = (Button) findViewById(R.id.btlogin);
-        btcreate = (Button)findViewById(R.id.btcreate);
-        //,reset
 
+
+
+  }
+
+    private void authenticate(User user) {
+        ServerRequests serverRequests = new ServerRequests(this);
+        serverRequests.fetchdatainBackgroung(user,new GetUserCallbacks() {
+            @Override
+            public void done(User returnedUdser) {
+                if (returnedUdser == null)
+                {
+                    //show an error message
+                    AlertDialog.Builder builder = new AlertDialog.Builder(IExperience.this);
+                    builder.setMessage("email & password don't match");
+                    etpassword.setText("");
+                    etemail.setText("");
+                    builder.setPositiveButton("ok",null);
+                    builder.show();
+                }else
+                {
+                    localDatabase.StoreData(returnedUdser);
+                    localDatabase.setUserLoggedin(true);
+
+                    Intent a = new Intent(IExperience.this, Experience_dashboard.class);
+                   startActivity(a);
+                }
+            }
+        });
     }
+
+  /*  public void onAdminLog(View view)
+{
+
+    String email = atemail.getText().toString();
+    String password = atpassword.getText().toString();
+}
+public void onAdminRegister(View view)
+{
+    Intent x = new Intent(IExperience.this,Register.class);
+    startActivity(x);
+}*/
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,25 +145,8 @@ public class IExperience extends AppCompatActivity implements View.OnClickListen
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View view) {
-        Intent a;
-        switch (view.getId()){
-            case R.id.login:
-                break;
-            case R.id.btlogin:
-                break;
-            case R.id.Lcreate:
-               a = new Intent(IExperience.this, Register.class);
-                startActivity(a);
 
-                break;
-            case R.id.btcreate:
-                break;
-
-
-        }
 
 
     }
-}
+

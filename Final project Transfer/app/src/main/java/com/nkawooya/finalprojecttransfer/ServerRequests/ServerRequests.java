@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,7 +25,7 @@ public class ServerRequests {
 
     ProgressDialog progressDialog;
     public static final int CONNECTION_TIMEOUT =15000;
-   // public static final String SERVER_ADDRESS = "http://localhost/phpmyadmin/index.php";
+   public static final String SERVER_ADDRESS = "http://mobiletourist.comuf.com/";
 
 
     public ServerRequests(Context context)
@@ -42,7 +43,7 @@ public class ServerRequests {
     public void fetchdatainBackgroung(User user,GetUserCallbacks callbacks)
     {
         progressDialog.show();
-        //new FetchDataAsyncTask(user,callbacks).execute();
+        new FetchDataAsyncTask(user,callbacks).execute();
     }
     public class StoreDataAsyncTask extends AsyncTask<Void,Void,Void> {
         User user;
@@ -58,16 +59,13 @@ public class ServerRequests {
 
 
 
-
-
-
             try {
                 StringBuilder content = new StringBuilder("res");
                 // URL url = new URL(SERVER+"registerUser.php");
 
 
                 //URL url = new URL("http://10.0.3.2/smsd/registerUser.php");
-                URL url = new URL("http://10.103.6.196:80/smart_tour/Register.php");
+                URL url = new URL(SERVER_ADDRESS+"Register.php");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setReadTimeout(CONNECTION_TIMEOUT);
                 urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
@@ -112,8 +110,10 @@ public class ServerRequests {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            callbacks.done(null);
+            super.onPostExecute(aVoid);
+
         }
 
         }
@@ -137,7 +137,7 @@ public class ServerRequests {
                 try {
 
                     //URL url = new URL(SERVER+"retrive.php");
-                    URL url = new URL("http://10.103.6.196:80/smart_tour/FetchUserData.php");
+                    URL url = new URL(SERVER_ADDRESS+"FetchuserData.php");
                     URLConnection urlConnection = url.openConnection();
 
                     urlConnection.setReadTimeout(CONNECTION_TIMEOUT);
@@ -167,26 +167,48 @@ public class ServerRequests {
                     res = content1.toString();
 
                     //json decode the data
+                    /*
                     JSONArray jsonArray = new JSONArray(res);
                     String uname = jsonArray.getString(1);
                     String upass = jsonArray.getString(4);
                     user1 = new User(uname, upass);
+*/
+
+                    JSONObject jsonObject = new JSONObject(res);
+                    if(jsonObject.length() == 0){
+                        user1 = null;
+
+                    }else
+                    {
+                        String username,country;
+                        username =null;
+                        country=null;
+                        if(jsonObject.has("username"))
+                        {
+                            username = jsonObject.getString("username");
+                        }
+                        if(jsonObject.has("country"))
+                        {
+                            country = jsonObject.getString("country");
+                        }
+                        return user1 = new User(username,country);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    res = e.toString();
+                    //res = e.toString();
                 }
 
 
+return user1;
 
-                return user1;
             }
 
             @Override
-            protected void onPostExecute(User res) {
+            protected void onPostExecute(User user1) {
                 progressDialog.dismiss();
-                callbacks.done(res);
-                super.onPostExecute(res);
+                callbacks.done(user1);
+                super.onPostExecute(user1);
 
             }
         }

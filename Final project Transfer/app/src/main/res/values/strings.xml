@@ -39,7 +39,7 @@
     <string name="log">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="create">New Account here !!</string>
+    <string name="create">Sign Up</string>
     <string name="name">Name</string>
     <string name="confirm">Confirm Password</string>
     <string name="reg">Register</string>
@@ -76,5 +76,6 @@
     <string name="title_activity_exp_dashboard">Exp_dashboard</string>
     <string name="title_activity_tracker">Tracker</string>
     <string name="title_activity_object__tracking">Object_Tracking</string>
+    <string name="title_activity_object_tracking">ObjectTracking</string>
 
 </resources>

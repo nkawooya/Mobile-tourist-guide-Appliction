@@ -38,7 +38,6 @@
                         android:text="@string/sign"
                         android:textSize="35dip"
                         android:layout_marginTop="10dip"
-                        android:textStyle="bold"
                         android:textColor="#000"
                         android:layout_gravity="center"
                         />
@@ -77,43 +76,44 @@
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="30dip"
-                        ><Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/log"
-                        android:background="@android:color/holo_blue_dark"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:id="@+id/login"
-                        />
 
-                    </LinearLayout>
                     <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="10dip"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        >
+                        android:layout_gravity="center_horizontal">
+
                         <Button
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:text="@string/create"
+                            android:id="@+id/login"
+                            android:text="@string/log"
                             android:textAllCaps="false"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dip"
+                            android:gravity="center"
+                            android:ems="10"
+                            android:onClick="onLoginClick" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/create"
+                            android:textSize="20dip"
                             android:id="@+id/Lcreate"
-
-                            android:textSize="16dip"/>
-
+                            android:textAllCaps="false"
+                            android:ems="10"
+                            android:background="@android:color/transparent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:onClick="onSigninClick" />
 
                     </LinearLayout>
+
+
+
+
+
                     </LinearLayout>
 
                 <LinearLayout
@@ -180,41 +180,38 @@
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="30dip"
-                        ><Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/log"
-                        android:background="@android:color/holo_blue_dark"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:id="@+id/btlogin"
-                        />
 
-                    </LinearLayout>
                     <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="10dip"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        >
+                        android:layout_gravity="center_horizontal">
+
                         <Button
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
+                            android:id="@+id/btlogin"
+                            android:text="@string/log"
+                            android:textAllCaps="false"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dip"
+                            android:gravity="center"
+                            android:ems="10"
+                            android:onClick="onAdminLog" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/create"
+                            android:textSize="20dip"
                             android:textAllCaps="false"
                             android:id="@+id/btcreate"
-
-                            android:textSize="16dip"/>
-
+                            android:ems="10"
+                            android:background="@android:color/transparent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:onClick="onAdminRegister"
+                            android:nestedScrollingEnabled="true" />
 
                     </LinearLayout>
 

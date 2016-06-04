@@ -27,7 +27,7 @@ public class LocalDatabase {
     }
     public User getLoggedinUser()
     {
-        String name = localDatabase.getString("name"," ");
+        String name = localDatabase.getString("name","");
         String username = localDatabase.getString("username","");
         String email = localDatabase.getString("email","");
         String country = localDatabase.getString("country","");
@@ -44,11 +44,11 @@ public class LocalDatabase {
     }
     public boolean getUserloggedin()
     {
-        if (localDatabase.getBoolean("LoggedIn",false)== true) {
+        if (localDatabase.getBoolean("LoggedIn",false)== true)
             return true;
-        }else{
+        else
             return false;
-        }
+
     }
     public void clearData()
     {

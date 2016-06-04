@@ -5,7 +5,11 @@ package com.nkawooya.finalprojecttransfer.ServerRequests;
  */
 public class User {
 
-    String name, username,email,country,password;
+    String name;
+    public String username;
+    String email;
+    public String country;
+    String password;
     public User(String name, String username,String email,String country,String password)
     {
         this.name = name;

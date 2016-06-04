@@ -97,8 +97,8 @@
             android:label="@string/title_activity_tracker" >
         </activity>
         <activity
-            android:name=".Object_Tracking"
-            android:label="@string/title_activity_object__tracking" >
+            android:name=".Login.Register"
+            android:label="@string/reg" >
         </activity>
     </application>
 
